@@ -1,5 +1,6 @@
 FROM node:15.14.0
 RUN npm install -g npm@7.9.0
+RUN npm install --save express ejs
 RUN mkdir /app_node
 WORKDIR /app_node
 ADD . /app_node
