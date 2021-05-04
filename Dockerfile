@@ -3,7 +3,7 @@ RUN npm install -g npm@7.9.0
 RUN mkdir /app_node
 WORKDIR /app_node
 ADD . /app_node
-RUN npm install ejs
+#RUN npm install ejs
 RUN npm install
 
 EXPOSE 3000
