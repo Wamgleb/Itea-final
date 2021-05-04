@@ -1,0 +1,55 @@
+---
+- hosts: "kursova"
+  become: yes
+
+  tasks:
+
+    - name: Update
+      command: apt update -y
+
+    - name: Install pip3
+      command: apt install python3-pip -y
+
+    - name: Install docker py
+      command: pip3 install docker-py
+      register: docker_py
+
+    - debug: msg:"{{ docker_py.stdout }}"
+
+    - name: Update
+      command: apt update -y
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Update
+      command: apt update -y
+
+    - name: Install Docker
+      command: apt install docker-ce docker-ce-cli containerd.io -y
+      register: docker
+
+    - debug: msg:"{{ docker.stdout }}"
+    
+    - name: Start docker
+      command: service docker start
+      register: docker
+
+    - debug: msg:"{{ docker.stdout }}"
+
+    - name: Install & start docker image
+      command: docker run -d --rm -p80:80 wam77/itea-final:latest
+
+
+ 
