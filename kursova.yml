@@ -49,7 +49,7 @@
     - debug: msg:"{{ docker.stdout }}"
 
     - name: Install & start docker image
-      command: docker run -d --rm -p80:80 wam77/itea-final:latest
+      command: docker run -d --rm -p80:3000 wam77/itea-final:latest
 
 
  
