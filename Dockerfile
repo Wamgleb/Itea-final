@@ -5,7 +5,7 @@ WORKDIR /app_node
 ADD . /app_node
 #RUN npm install ejs
 RUN npm install
-RUN npm install ejs -g
+RUN npm install ejs
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
