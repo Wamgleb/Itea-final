@@ -10,5 +10,4 @@ RUN npm install dotenv
 RUN npm install mongoose
 
 EXPOSE 3000
-EXPOSE 3001
 CMD [ "npm", "start" ]
