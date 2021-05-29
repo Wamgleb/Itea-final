@@ -6,6 +6,9 @@ ADD . /app_node
 #RUN npm install ejs
 RUN npm install
 RUN npm install ejs
+RUN npm install dotenv
+RUN npm install mongoose
 
 EXPOSE 3000
+EXPOSE 3001
 CMD [ "npm", "start" ]
